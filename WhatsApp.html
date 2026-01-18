@@ -1,0 +1,11 @@
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<button id="openGuide">Открыть гайд</button>
+
+<script>
+  const tg = window.Telegram.WebApp;
+
+  document.getElementById('openGuide').addEventListener('click', () => {
+    tg.openLink('https://example.com/guide.html');
+  });
+</script>
