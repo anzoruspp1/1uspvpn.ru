@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>USPVPN SpeedTest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+<style>
+:root {
+  --bg: #020617;
+  --card: #020617;
+  --accent: #3b82f6;
+  --text: #ffffff;
+  --muted: #94a3b8;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, Arial;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: 100%;
+  max-width: 360px;
+  padding: 20px;
+  text-align: center;
+}
+
+h2 {
+  margin: 10px 0;
+}
+
+.speedometer {
+  position: relative;
+  width: 220px;
+  height: 110px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.arc {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 10px solid #020617;
+  border-top-color: var(--accent);
+  transform: rotate(-90deg);
+  transition: transform 0.6s ease-out;
+}
+
+.speed-value {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.unit {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.results {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+button {
+  margin-top: 15px;
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.footer {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+</style>
+</head>
+
+<body>
+<div class="card">
+  <h2>USPVPN SpeedTest</h2>
+
+  <div class="speedometer">
+    <div class="arc" id="arc"></div>
+  </div>
+
+  <div class="speed-value" id="speed">0</div>
+  <div class="unit" id="mode">Mbps</div>
+
+  <div class="results">
+    <div id="ping">Ping: —</div>
+    <div id="download">Download: —</div>
+    <div id="upload">Upload: —</div>
+  </div>
+
+  <button id="start">Начать тест</button>
+
+  <div class="footer">
+    Надёжный VPN — в один клик
+  </div>
+</div>
+
+<script>
+const tg = window.Telegram.WebApp;
+tg.expand();
+tg.setHeaderColor("#020617");
+tg.setBackgroundColor("#020617");
+
+tg.MainButton.setText("Закрыть");
+tg.MainButton.show();
+tg.MainButton.onClick(() => tg.close());
+
+// 🔧 ЗАМЕНИ НА СВОЙ VPN-СЕРВЕР
+const SERVER_BASE = "https://your-vpn-domain.com";
+const DOWNLOAD_URL = SERVER_BASE + "/speedtest/download";
+const UPLOAD_URL   = SERVER_BASE + "/speedtest/upload";
+const PING_URL     = SERVER_BASE + "/speedtest/ping";
+
+const arc = document.getElementById("arc");
+const speedEl = document.getElementById("speed");
+
+function animateSpeed(value, max = 100) {
+  const deg = Math.min(value / max, 1) * 180;
+  arc.style.transform = `rotate(${deg - 90}deg)`;
+  speedEl.textContent = value.toFixed(1);
+}
+
+async function testPing() {
+  const start = performance.now();
+  await fetch(PING_URL, { cache: "no-store" });
+  return Math.round(performance.now() - start);
+}
+
+async function testDownload() {
+  const start = performance.now();
+  const res = await fetch(DOWNLOAD_URL, { cache: "no-store" });
+  const buf = await res.arrayBuffer();
+  const time = (performance.now() - start) / 1000;
+  return (buf.byteLength * 8 / time / 1e6);
+}
+
+async function testUpload() {
+  const data = new Uint8Array(5 * 1024 * 1024);
+  const start = performance.now();
+  await fetch(UPLOAD_URL, {
+    method: "POST",
+    body: data
+  });
+  const time = (performance.now() - start) / 1000;
+  return (data.byteLength * 8 / time / 1e6);
+}
+
+document.getElementById("start").onclick = async () => {
+  document.getElementById("start").disabled = true;
+
+  const ping = await testPing();
+  document.getElementById("ping").textContent = `Ping: ${ping} ms`;
+
+  const down = await testDownload();
+  animateSpeed(down);
+  document.getElementById("download").textContent = `Download: ${down.toFixed(2)} Mbps`;
+
+  const up = await testUpload();
+  animateSpeed(up);
+  document.getElementById("upload").textContent = `Upload: ${up.toFixed(2)} Mbps`;
+
+  document.getElementById("start").disabled = false;
+};
+</script>
+</body>
+</html>
