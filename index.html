@@ -3,160 +3,293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>USPTelecom — Защищённый VPN-сервис</title>
-<meta name="description" content="USPTelecom предоставляет надёжные VPN-услуги для частных лиц и бизнеса.">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mulish:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0a0e1a;--surface:#111827;--border:#1e2d45;--accent:#00d4ff;--accent2:#0099cc;--text:#e8f0fe;--muted:#6b7fa3;--green:#00e676}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Mulish',sans-serif;font-weight:300;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 20%,rgba(0,212,255,.06) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(0,153,204,.05) 0%,transparent 60%);pointer-events:none;z-index:0}
-.container{max-width:1100px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-header{padding:28px 0;border-bottom:1px solid var(--border);position:relative;z-index:1}
-.header-inner{display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:12px}
-.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
-.logo-text{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px}
-.logo-text span{color:var(--accent)}
-.badge{background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.3);color:var(--green);padding:6px 14px;border-radius:20px;font-size:13px;font-weight:600}
-.hero{padding:100px 0 80px;text-align:center}
-.hero-tag{display:inline-block;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--accent);padding:8px 20px;border-radius:30px;font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:32px}
-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,96px);line-height:.95;letter-spacing:3px;margin-bottom:28px}
-h1 span{color:var(--accent);display:block}
-.hero-desc{font-size:18px;color:var(--muted);max-width:520px;margin:0 auto 48px;line-height:1.7}
-.hero-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;padding:16px 36px;border-radius:8px;font-weight:700;font-size:16px;text-decoration:none;transition:transform .2s,box-shadow .2s}
-.hero-cta:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,212,255,.3)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin:60px 0}
-.stat{background:var(--surface);padding:36px 24px;text-align:center}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--accent);line-height:1;margin-bottom:8px}
-.stat-label{font-size:14px;color:var(--muted)}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:2px;margin-bottom:48px;text-align:center}
-.section-title span{color:var(--accent)}
-.features{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:80px}
-.feature{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;transition:border-color .3s,transform .3s}
-.feature:hover{border-color:rgba(0,212,255,.3);transform:translateY(-4px)}
-.feature-icon{font-size:36px;margin-bottom:16px;display:block}
-.feature h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:10px}
-.feature p{font-size:15px;color:var(--muted);line-height:1.6}
-.about{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:56px;margin-bottom:80px}
-.about h2{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:2px;margin-bottom:20px}
-.about h2 span{color:var(--accent)}
-.about p{font-size:16px;color:var(--muted);line-height:1.8;max-width:680px;margin-bottom:16px}
-.about-details{margin-top:32px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.detail-row{display:flex;flex-direction:column;gap:4px}
-.detail-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600}
-.detail-value{font-size:15px;color:var(--text);font-weight:600}
-.contact{background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(0,153,204,.05));border:1px solid rgba(0,212,255,.2);border-radius:20px;padding:56px;text-align:center;margin-bottom:60px}
-.contact h2{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:2px;margin-bottom:16px}
-.contact p{color:var(--muted);font-size:16px;margin-bottom:36px}
-.contact-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.contact-link{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:14px 24px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15px;transition:border-color .2s,transform .2s}
-.contact-link:hover{border-color:var(--accent);transform:translateY(-2px)}
-footer{background:var(--surface);border-top:1px solid var(--border);padding:48px 0 32px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.footer-brand-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;margin-bottom:12px;display:block}
-.footer-brand p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:8px}
-.footer-col h4{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--accent);margin-bottom:16px}
-.footer-col p,.footer-col a{font-size:14px;color:var(--muted);line-height:1.8;text-decoration:none;display:block}
-.footer-col a:hover{color:var(--accent)}
-.footer-legal{background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:24px;font-size:13px;color:var(--muted);line-height:1.8}
-.footer-legal strong{color:var(--text)}
-.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.footer-bottom p{font-size:13px;color:var(--muted)}
-.footer-bottom a{font-size:13px;color:var(--accent);text-decoration:none}
-.footer-bottom a:hover{text-decoration:underline}
-@media(max-width:768px){.stats{grid-template-columns:1fr}.features{grid-template-columns:1fr}.about{padding:32px}.about-details{grid-template-columns:1fr}.contact{padding:32px}.footer-grid{grid-template-columns:1fr}h1{font-size:52px}}
-</style>
+
+<title>USPVPN — Mobile Network Solutions</title>
+<meta name="description" content="USPVPN develops mobile applications and network solutions for secure, reliable connectivity.">
+<meta name="theme-color" content="#0B0D1A">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem("uspvpn_theme");
+      var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+</script>
 </head>
+
 <body>
-<header>
-  <div class="container">
-    <div class="header-inner">
-      <div class="logo">
-        <div class="logo-icon">🛡️</div>
-        <div class="logo-text">USP<span>Telecom</span></div>
-      </div>
-      <div class="badge">● Работаем 24/7</div>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a href="#top" class="logo" aria-label="USPVPN home">
+      <span class="logo-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L4 5.5V11C4 16.0701 7.41108 19.5953 11.6587 21.5587C11.8754 21.6638 12.1246 21.6638 12.3413 21.5587C16.5889 19.5953 20 16.0701 20 11V5.5L12 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M9 12.2L11.1 14.3L15.3 9.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      USPVPN
+    </a>
+
+    <nav class="main-nav" aria-label="Primary">
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#support" data-i18n="nav.support">Support</a>
+      <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="lang-switch" id="langSwitch" aria-label="Switch language">
+        <span class="lang-option" data-lang-option="ru">RU</span>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <span class="lang-option" data-lang-option="en">EN</span>
+      </button>
+
+      <button type="button" class="theme-switch" id="themeSwitch" aria-label="Toggle dark mode" aria-pressed="false">
+        <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M12 2.5V5M12 19V21.5M4.2 4.2L6 6M18 18L19.8 19.8M2.5 12H5M19 12H21.5M4.2 19.8L6 18M18 6L19.8 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+        </svg>
+        <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20.5 14.7C19.3 15.2 18 15.5 16.6 15.5C11.3 15.5 7 11.2 7 5.9C7 4.5 7.3 3.2 7.8 2C4.4 3.4 2 6.8 2 10.7C2 15.8 6.2 20 11.3 20C15.2 20 18.6 17.6 20 14.2C20.2 14.4 20.3 14.5 20.5 14.7Z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="main-nav-mobile" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
     </div>
+
   </div>
+
+  <nav class="main-nav-mobile" id="main-nav-mobile" aria-label="Primary mobile">
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#services" data-i18n="nav.services">Services</a>
+    <a href="#support" data-i18n="nav.support">Support</a>
+    <a href="#privacy" data-i18n="nav.privacy">Privacy</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
+  </nav>
 </header>
-<main>
-  <div class="container">
-    <section class="hero">
-      <div class="hero-tag">🔐 Надёжный VPN-сервис</div>
-      <h1>Ваша безопасность<span>в интернете</span></h1>
-      <p class="hero-desc">USPTelecom предоставляет профессиональные VPN-услуги для защиты ваших данных, анонимности и свободного доступа к интернету.</p>
-      <a href="https://wa.me/79637025803" class="hero-cta">💬 Написать в WhatsApp</a>
-    </section>
-    <div class="stats">
-      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Активных клиентов</div></div>
-      <div class="stat"><div class="stat-num">99.9%</div><div class="stat-label">Время работы сервиса</div></div>
-      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Поддержка клиентов</div></div>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <div class="hero-glow" aria-hidden="true">
+      <span class="glow glow-1"></span>
+      <span class="glow glow-2"></span>
+      <span class="glow glow-3"></span>
     </div>
-    <section>
-      <div class="section-title">Наши <span>услуги</span></div>
-      <div class="features">
-        <div class="feature"><span class="feature-icon">🔒</span><h3>Защита данных</h3><p>Шифрование трафика защищает ваши личные данные от перехвата и слежки в публичных и корпоративных сетях.</p></div>
-        <div class="feature"><span class="feature-icon">🌐</span><h3>Свободный доступ</h3><p>Доступ к любым сайтам и сервисам без ограничений. Обход блокировок с высокой скоростью соединения.</p></div>
-        <div class="feature"><span class="feature-icon">⚡</span><h3>Высокая скорость</h3><p>Оптимизированные серверы обеспечивают максимальную скорость без задержек и ограничений трафика.</p></div>
-        <div class="feature"><span class="feature-icon">📱</span><h3>Все устройства</h3><p>Работает на iPhone, Android, Windows, Mac. Простая настройка за несколько минут по инструкции.</p></div>
+    <div class="container hero-inner">
+      <span class="eyebrow" data-i18n="hero.eyebrow">Mobile &amp; Network Software</span>
+      <h1 data-i18n="hero.title">Mobile network solutions, built for reliability</h1>
+      <p class="hero-lead" data-i18n="hero.lead">
+        USPVPN designs and maintains mobile applications and networking tools focused on secure
+        connectivity, stability, and a clean user experience.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary" data-i18n="hero.cta_primary">Contact us</a>
+        <a href="#services" class="btn btn-ghost" data-i18n="hero.cta_secondary">See what we do</a>
       </div>
-    </section>
-    <section class="about">
-      <h2>О компании <span>USPTelecom</span></h2>
-      <p>USPTelecom — российская компания, специализирующаяся на предоставлении VPN-услуг для частных лиц и бизнеса. Мы обеспечиваем безопасное и стабильное интернет-соединение.</p>
-      <p>Наша миссия — сделать безопасный интернет доступным для каждого. Мы предлагаем простые в использовании решения с профессиональной поддержкой 24/7.</p>
-      <div class="about-details">
-        <div class="detail-row"><span class="detail-label">Юридическое название</span><span class="detail-value">ИП USPTelecom</span></div>
-        <div class="detail-row"><span class="detail-label">Сфера деятельности</span><span class="detail-value">VPN и телекоммуникационные услуги</span></div>
-        <div class="detail-row"><span class="detail-label">Телефон</span><span class="detail-value">+7 963 702 58 03</span></div>
-        <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value">usp-vpn.store@usp-vpn.store</span></div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <span class="section-tag" data-i18n="about.tag">About</span>
+      <h2 data-i18n="about.title">An independent mobile software developer</h2>
+      <p class="section-lead" data-i18n="about.body">
+        USPVPN is an independent software developer operated by Individual Entrepreneur
+        Khazhi Bekaevich Tsinaev. We build mobile applications and network utilities for
+        iOS and Android, with a focus on dependable connectivity and straightforward design.
+      </p>
+    </div>
+  </section>
+
+  <section id="services" class="section section-muted">
+    <div class="container">
+      <span class="section-tag" data-i18n="services.tag">Services</span>
+      <h2 data-i18n="services.title">What we work on</h2>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="2" width="12" height="20" rx="2.5" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M11 18H13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 data-i18n="services.card1.title">Mobile development</h3>
+          <p data-i18n="services.card1.body">Native and cross-platform mobile applications for iOS and Android.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M3 12H21M12 3C14.5 5.6 15.8 8.7 15.8 12C15.8 15.3 14.5 18.4 12 21C9.5 18.4 8.2 15.3 8.2 12C8.2 8.7 9.5 5.6 12 3Z" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <h3 data-i18n="services.card2.title">Network solutions</h3>
+          <p data-i18n="services.card2.body">Secure networking tools, configuration management, and connectivity services.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 21C12 21 4 16.5 4 10.5C4 7.5 6.3 5.5 9 5.5C10.4 5.5 11.5 6.1 12 7C12.5 6.1 13.6 5.5 15 5.5C17.7 5.5 20 7.5 20 10.5C20 16.5 12 21 12 21Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 data-i18n="services.card3.title">Technical support</h3>
+          <p data-i18n="services.card3.body">Ongoing application maintenance and responsive customer support.</p>
+        </div>
       </div>
-    </section>
-    <section class="contact">
-      <h2>Связаться с нами</h2>
-      <p>Есть вопросы? Наша команда поддержки готова помочь вам 24/7</p>
-      <div class="contact-links">
-        <a href="https://wa.me/79637025803" class="contact-link">💬 WhatsApp</a>
-        <a href="https://t.me/USPVPN_bot" class="contact-link">✈️ Telegram</a>
-        <a href="mailto:usp-vpn.store@usp-vpn.store" class="contact-link">📧 Email</a>
+    </div>
+  </section>
+
+  <section id="support" class="section">
+    <div class="container">
+      <span class="section-tag" data-i18n="support.tag">Support</span>
+      <h2 data-i18n="support.title">Need help with one of our apps?</h2>
+      <p class="section-lead" data-i18n="support.body">
+        If you have any questions about our applications, reach out and we'll get back to you.
+      </p>
+
+      <div class="info-row">
+        <div class="info-item">
+          <span class="info-label" data-i18n="support.email_label">Email</span>
+          <a href="mailto:tima95706@gmail.com">tima95706@gmail.com</a>
+        </div>
+        <div class="info-item">
+          <span class="info-label" data-i18n="support.response_label">Response time</span>
+          <span data-i18n="support.response_value">1–2 business days</span>
+        </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+
+  <section id="privacy" class="section section-muted">
+    <div class="container">
+      <span class="section-tag" data-i18n="privacy.tag">Privacy Policy</span>
+      <h2 data-i18n="privacy.title">Privacy Policy</h2>
+      <p class="meta-note" data-i18n="privacy.updated">Last updated: January 2026</p>
+
+      <div class="policy-block">
+        <h3 data-i18n="privacy.s1.title">1. Who we are</h3>
+        <p data-i18n="privacy.s1.body">
+          USPVPN is operated by Individual Entrepreneur Khazhi Bekaevich Tsinaev
+          (Shali, Chechen Republic, Russia). This policy explains how our mobile
+          applications handle information.
+        </p>
+      </div>
+
+      <div class="policy-block">
+        <h3 data-i18n="privacy.s2.title">2. Information we process</h3>
+        <p data-i18n="privacy.s2.body">
+          Our applications process only the minimum information required to provide
+          their functionality, such as basic device identifiers and connection
+          diagnostics needed for the app to work correctly.
+        </p>
+      </div>
+
+      <div class="policy-block">
+        <h3 data-i18n="privacy.s3.title">3. How we use information</h3>
+        <p data-i18n="privacy.s3.body">
+          Information is used solely to operate, maintain, and improve our applications,
+          and to provide customer support when you contact us.
+        </p>
+      </div>
+
+      <div class="policy-block">
+        <h3 data-i18n="privacy.s4.title">4. Sharing of information</h3>
+        <p data-i18n="privacy.s4.body">
+          We do not sell personal information to third parties. Information is shared
+          only where required to operate the service (e.g. infrastructure providers) or
+          where required by law.
+        </p>
+      </div>
+
+      <div class="policy-block">
+        <h3 data-i18n="privacy.s5.title">5. Data retention &amp; security</h3>
+        <p data-i18n="privacy.s5.body">
+          We retain information only as long as necessary for the purposes described
+          above and apply reasonable technical measures to protect it.
+        </p>
+      </div>
+
+      <div class="policy-block">
+        <h3 data-i18n="privacy.s6.title">6. Your rights</h3>
+        <p data-i18n="privacy.s6.body">
+          You may contact us at any time to ask what information we hold about you, or to
+          request that it be corrected or deleted.
+        </p>
+      </div>
+
+      <div class="policy-block">
+        <h3 data-i18n="privacy.s7.title">7. Contact</h3>
+        <p data-i18n="privacy.s7.body">
+          For privacy-related questions, please contact
+        </p>
+        <a href="mailto:tima95706@gmail.com">tima95706@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <span class="section-tag" data-i18n="contact.tag">Contact</span>
+      <h2 data-i18n="contact.title">Get in touch</h2>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="info-label" data-i18n="contact.entity_label">Individual Entrepreneur</span>
+          <span>Khazhi Bekaevich Tsinaev</span>
+        </div>
+        <div class="contact-item">
+          <span class="info-label" data-i18n="contact.brand_label">Brand</span>
+          <span>USPVPN</span>
+        </div>
+        <div class="contact-item">
+          <span class="info-label" data-i18n="contact.location_label">Location</span>
+          <span data-i18n="contact.location_value">Shali, Chechen Republic, Russia</span>
+        </div>
+        <div class="contact-item">
+          <span class="info-label" data-i18n="contact.phone_label">Phone</span>
+          <a href="tel:+79679552959">+7 (967) 955-29-59</a>
+        </div>
+        <div class="contact-item">
+          <span class="info-label" data-i18n="contact.email_label">Email</span>
+          <a href="mailto:tima95706@gmail.com">tima95706@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="footer-brand-name">USP<span style="color:var(--accent)">Telecom</span></span>
-        <p>Профессиональные VPN-услуги для защиты ваших данных и свободного доступа к интернету.</p>
-        <p style="color:var(--text);font-weight:600;margin-top:8px;">+7 963 702 58 03</p>
-        <p style="margin-top:4px;">usp-vpn.store@usp-vpn.store</p>
-      </div>
-      <div class="footer-col">
-        <h4>Услуги</h4>
-        <p>VPN для физических лиц</p>
-        <p>VPN для бизнеса</p>
-        <p>Техническая поддержка</p>
-        <p>Консультации</p>
-      </div>
-      <div class="footer-col">
-        <h4>Контакты</h4>
-        <a href="https://wa.me/79339471012">WhatsApp: +7 963 702 58 03</a>
-        <a href="https://t.me/USPVPN_bot">Telegram: @USPVPN_bot</a>
-        <a href="mailto:usp-vpn.store@usp-vpn.store">usp-vpn.store@usp-vpn.store</a>
-      </div>
-    </div>
-    <div class="footer-legal">
-      <strong>USPTelecom</strong> · Юридическое название: <strong>ИП USPTelecom</strong><br>
-      Адрес: <strong>Россия, 105264, г. Москва, ул. Примерная, д. 1</strong><br>
-      Телефон: <strong>+7 963 702 58 03</strong> · Email: <strong>usp-vpn.store@usp-vpn.store</strong>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2024–2026 USPTelecom. Все права защищены.</p>
-      <a href="/privacy.html">Политика конфиденциальности</a>
-    </div>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span data-i18n="footer.copyright">© 2026 USPVPN</span>
+    <span class="footer-sep" aria-hidden="true">·</span>
+    <span data-i18n="footer.entity">Individual Entrepreneur Khazhi Bekaevich Tsinaev</span>
   </div>
 </footer>
+
+<script src="i18n.js"></script>
 </body>
 </html>
